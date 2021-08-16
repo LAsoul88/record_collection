@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block content %}
+<div class="detail__img">
+  <img src="{{record.image}}" alt="{{record.name}}" />
+</div>
+<div class="detail__name">
+  <h1 class="title">{{record.name}}</h1>
+</div>
+<div class="detail__container">
+  <div class="buttons">
+    <a href="{% url 'record_update' record.pk %}" class="button is-info">
+      <span class="icon">
+        <i class="fas fa-edit"></i>
+      </span>
+    </a>
+    <a href="{% url 'record_delete' record.pk %}" class="button is-danger">
+      <span class="icon">
+        <i class="fas fa-trash-alt"></i>
+      </span>
+    </a>
+  </div>
+  <div class="detail__records mb-5">
+    <h3 class="title is-3">Reviews</h3>
+    <form class="mb-5" action="{% url 'review_create' record.pk %}" method="post">
+      {% csrf_token %}
+      <div class="field has-addons">
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            name="review"
+            placeholder="Enter review here"
+            required
+          />
+        </div>
+        <div class="control">
+          <input class="button is-primary" type="submit" value="Add Review" />
+        </div>
+      </div>
+    </form>
+    {% for review in record.reviews.all %}
+    <div class="review">
+      <span>{{review.review}}</span>
+    </div>
+    {% empty %}
+    <article class="message">
+      <div class="message-header">
+        <p>No Reviews Available</p>
+      </div>
+    </article>
+
+    {% endfor %}
+  </div>
+
+  <div class="detail__about">
+    <h4 class="title is-4">Release Year: </h4>
+    <p>{{record.year}}</p>
+  </div>
+</div>
+
+{% endblock %}
