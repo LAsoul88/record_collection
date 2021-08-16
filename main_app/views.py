@@ -64,7 +64,8 @@ class ReviewCreate(View):
 
     def post(self, request, pk):
         review = request.POST.get('review')
+        user = request.POST.get('user')
         record = Record.objects.get(pk=pk)
-        Review.objects.create(review=review, record=record)
+        Review.objects.create(review=review, user=user, record=record)
         return redirect('record_detail', pk=pk)
 

@@ -19,7 +19,7 @@
     </a>
   </div>
   <div class="detail__records mb-5">
-    <h3 class="title is-3">Reviews</h3>
+    <h3 class="title">Reviews</h3>
     <form class="mb-5" action="{% url 'review_create' record.pk %}" method="post">
       {% csrf_token %}
       <div class="field has-addons">
@@ -33,13 +33,23 @@
           />
         </div>
         <div class="control">
+          <input 
+            class="input"
+            type="text"
+            name="user"
+            placeholder="Enter username here"
+          />
+        </div>
+        <div class="control">
           <input class="button is-primary" type="submit" value="Add Review" />
         </div>
       </div>
     </form>
     {% for review in record.reviews.all %}
     <div class="review">
-      <span>{{review.review}}</span>
+      <span>{{review.review}}</span><br>
+      <span>- {{review.user}}</span>
+
     </div>
     {% empty %}
     <article class="message">

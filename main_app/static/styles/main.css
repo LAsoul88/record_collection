@@ -71,6 +71,7 @@ body {
     position: absolute;
     z-index: 5;
     top: 400px;
+    color: white;
   }
   
   .detail__container {

@@ -21,7 +21,7 @@ class Record(Model):
 class Review(Model):
 
     review = TextField(max_length=1000)
-    user = CharField(max_length=25)
+    user = CharField(max_length=25, default="NA")
     created_at = models.DateTimeField(auto_now_add=True)
     record = ForeignKey(Record, on_delete=models.CASCADE, related_name="reviews")
 
