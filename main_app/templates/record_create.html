@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<h1 class="pt-3">Add A Record</h1>
+<h1>Add A Record</h1>
 
 <form method="post">
   {% comment %} secaurity feature {% endcomment %} 
@@ -8,7 +8,7 @@
   {% comment %} generate form {% endcomment %}
   {{form.as_p}}
 
-  <input class="button is-success" type="submit" value="Submit">
+  <input type="submit" value="Submit">
 
 </form>
 
